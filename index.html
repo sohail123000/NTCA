@@ -2,45 +2,301 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>National Talent Cricket Academy (NTCA)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
-    header { background: #222; color: white; padding: 1rem; text-align: center; }
-    nav { background: #333; padding: 1rem; text-align: center; }
-    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .content { padding: 2rem; max-width: 700px; margin: 2rem auto; background: white; border-radius: 8px; }
-    footer { background: #222; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    :root {
+      --main-color: #1c2237;
+      --accent: #ffb200;
+      --white: #fff;
+      --shadow: rgba(0,0,0,0.15) 0px 4px 24px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f2f3f7;
+      color: #222;
+    }
+    header {
+      background: var(--main-color) url('https://images.unsplash.com/photo-1505843276872-d7b1b7b4d8a0?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 1rem 2.5rem 1rem;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(28,34,55,0) 0%, var(--main-color) 100%);
+    }
+    .logo {
+      font-size: 2.3rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: .5rem;
+      color: var(--accent);
+      text-shadow: 1px 1px 10px #00000088;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      opacity: 0.93;
+      margin-bottom: 2rem;
+    }
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 1.13rem;
+      padding: 0.7rem 0;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+    }
+    nav a:hover, nav a.active {
+      background: var(--accent);
+      color: var(--main-color);
+    }
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 2rem 1.2rem 0 1.2rem;
+    }
+    .about-section {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 2.3rem 2rem 1.7rem 2rem;
+      margin-bottom: 2.2rem;
+    }
+    .about-section h1 {
+      color: var(--accent);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.1rem;
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+    }
+    .about-section p {
+      font-size: 1.11rem;
+      color: #2a2a2a;
+    }
+    .mission-vision {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      margin-bottom: 1.1rem;
+      justify-content: center;
+    }
+    .mv-card {
+      background: #fffbe6;
+      border-radius: 10px;
+      box-shadow: 0 2px 9px #ffb20028;
+      padding: 1.1rem 1rem;
+      flex: 1;
+      min-width: 220px;
+      max-width: 400px;
+    }
+    .mv-card h3 {
+      color: var(--accent);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-top: 0;
+      margin-bottom: .45em;
+      font-size: 1.18rem;
+    }
+    .highlight-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2.5rem 0 1.5rem 0;
+    }
+    .highlight-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.2rem;
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.18s;
+      text-align: center;
+    }
+    .highlight-card:hover {
+      transform: translateY(-7px) scale(1.035);
+      box-shadow: 0 6px 32px rgba(255,178,0,0.12);
+    }
+    .highlight-card h3 {
+      margin: 0 0 .3rem 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+    .highlight-card ul {
+      padding-left: 1.1em;
+      text-align: left;
+      margin: 0.4em 0 0 0;
+    }
+    .cta-banner {
+      background: var(--accent);
+      color: var(--main-color);
+      margin: 2.5rem 0 1.5rem 0;
+      border-radius: 18px;
+      padding: 1.35rem 1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 1.2px;
+      box-shadow: 0 4px 14px #0002;
+    }
+    .fee-contact {
+      background: #fffbe6;
+      border-radius: 12px;
+      box-shadow: 0 2px 9px #ffb20028;
+      padding: 1.2rem 1rem;
+      max-width: 420px;
+      margin: 2rem auto 1.5rem auto;
+      text-align: center;
+      font-size: 1.19rem;
+      color: #222;
+      border: 1.5px solid #ffe08c;
+    }
+    .fee-contact strong {
+      color: var(--accent);
+      font-size: 1.13em;
+    }
+    footer {
+      background: var(--main-color);
+      color: var(--white);
+      text-align: center;
+      padding: 1.7rem 1rem 1rem 1rem;
+      margin-top: 2rem;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      position: relative;
+    }
+    .footer-social {
+      margin-bottom: 0.7rem;
+    }
+    .footer-social a {
+      display: inline-block;
+      margin: 0 7px;
+      color: #fff;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+      font-size: 1.5rem;
+    }
+    .footer-social a:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+    @media (max-width: 800px) {
+      .highlight-section, .mission-vision {
+        flex-direction: column;
+        align-items: center;
+      }
+      .about-section {
+        padding: 1.1rem 0.7rem 1rem 0.7rem;
+      }
+      .highlight-card, .mv-card {
+        width: 90vw;
+        max-width: 320px;
+      }
+      .container {
+        padding: 1.1rem 0.2rem 0 0.2rem;
+      }
+    }
   </style>
+  <!-- FontAwesome for social icons -->
+  <script src="https://kit.fontawesome.com/3f8da1c9b5.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <h1>National Talent Cricket Academy (NTCA)</h1>
-    <p>Welcome to the official website of NTCA</p>
+    <div class="logo">NTCA</div>
+    <div class="subtitle">National Talent Cricket Academy</div>
   </header>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="player-registration.html">Player Registration</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="registration.html">Player Registration</a>
   </nav>
-  <section class="content">
-    <h2>About NTCA</h2>
-    <p>
-      <b>National Talent Cricket Academy (NTCA)</b> is dedicated to nurturing young cricket talent and providing professional training and opportunities. We invite passionate cricketers aged 8 to 25 to join us and be a part of our cricketing journey.
-    </p>
-    <ul>
-      <li>Professional coaching and guidance</li>
-      <li>Competitive matches and tournaments</li>
-      <li>Modern training facilities</li>
-      <li>Focus on both skill and sportsmanship</li>
-    </ul>
-    <p>
-      <b>Ready to become part of NTCA?</b> <br>
-      <a href="player-registration.html" style="color: #ff5722; font-weight: bold;">Register as a player here</a>
-    </p>
-  </section>
+  <div class="container">
+    <section class="about-section">
+      <h1>About NTCA</h1>
+      <p>
+        National Talent Cricket Academy (NTCA) is a premier cricket academy with hostel facility, providing a conducive environment for overall skill enhancement. We empower our players to unleash their inner cricketer through expert coaching, daily practice, and a holistic approach to fitness and sportsmanship.
+      </p>
+    </section>
+    <div class="mission-vision">
+      <div class="mv-card">
+        <h3>Our Vision</h3>
+        <p>
+          To be recognized as the leading cricket academy for nurturing and developing cricketing talent, creating future champions who excel both on and off the field.
+        </p>
+      </div>
+      <div class="mv-card">
+        <h3>Our Mission</h3>
+        <p>
+          To provide world-class coaching, state-of-the-art facilities, and a supportive environment, empowering every player to achieve their highest potential and contribute to the spirit of cricket.
+        </p>
+      </div>
+    </div>
+    <div class="cta-banner">
+      UNLEASH THE CRICKETER WITHIN YOU!
+    </div>
+    <section class="highlight-section">
+      <div class="highlight-card">
+        <h3>Why Choose NTCA?</h3>
+        <ul>
+          <li>2 Dedicated Coaches</li>
+          <li>Open Net Practice</li>
+          <li>Daily Nets Sessions</li>
+          <li>Bowling Machine Drills</li>
+          <li>Personal Fitness Training</li>
+          <li>Weekly 3 Club Matches</li>
+          <li>Hostel Facility Available</li>
+        </ul>
+      </div>
+      <div class="highlight-card">
+        <h3>Training Highlights</h3>
+        <ul>
+          <li>Net Practice & Nets Sessions</li>
+          <li>Fitness Training Every Day</li>
+          <li>Club Matches Every Week</li>
+          <li>Gym Training (or additional charges)</li>
+        </ul>
+      </div>
+    </section>
+    <div class="fee-contact">
+      <div><strong>Monthly Fee:</strong> ₹13,000 <span style="font-size:0.95em;">(including hostel and training)</span></div>
+      <div style="margin-top:0.5em;"><strong>Location:</strong> Lucknow</div>
+      <div style="margin-top:0.5em;"><strong>Contact:</strong> 7393827228</div>
+    </div>
+    <div class="cta-banner" style="background:#1c2237;color:#fff;margin-bottom:2rem;">
+      JOIN US AND TAKE YOUR CRICKET JOURNEY TO THE NEXT LEVEL!
+    </div>
+  </div>
   <footer>
-    &copy; 2025 National Talent Cricket Academy
+    <div class="footer-social">
+      <a href="https://facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:info@ntca.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    &copy; 2025 National Talent Cricket Academy (NTCA)
   </footer>
 </body>
 </html>
