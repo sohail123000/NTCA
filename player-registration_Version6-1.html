@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Registration - NTCC</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
+    header { background: #222; color: white; padding: 1rem; text-align: center; }
+    .form-section { padding: 2rem; background: white; margin: 2rem auto; border-radius: 8px; max-width: 600px; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 0.5rem; margin-top: 0.5rem; border-radius: 4px; border: 1px solid #ccc; }
+    .row { display: flex; gap: 1rem; }
+    .row > div { flex: 1; }
+    button { margin-top: 1.5rem; background: #ff5722; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+    button:hover { background: #e64a19; }
+    footer { background: #222; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    .error { color: red; margin-top: 0.5rem; font-size: 0.9rem; }
+  </style>
+  <script>
+    function calculateAge() {
+      const dob = document.getElementById('dob').value;
+      const ageInput = document.getElementById('age');
+      if (dob) {
+        const dobDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - dobDate.getFullYear();
+        const m = today.getMonth() - dobDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+          age--;
+        }
+        ageInput.value = age > 0 ? age : '';
+      } else {
+        ageInput.value = '';
+      }
+    }
+
+    function validateFileSize(inputId, errorId) {
+      const fileInput = document.getElementById(inputId);
+      const errorSpan = document.getElementById(errorId);
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        if (file.size > 5 * 1024 * 1024) { // 5MB in bytes
+          errorSpan.textContent = "File size must be 5MB or less.";
+          fileInput.value = "";
+        } else {
+          errorSpan.textContent = "";
+        }
+      } else {
+        errorSpan.textContent = "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>NTCC Player Registration</h1>
+  </header>
+  <section class="form-section">
+    <h2>Fill Player Details</h2>
+    <form enctype="multipart/form-data">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="fathername">Father's Name</label>
+      <input type="text" id="fathername" name="fathername" required />
+
+      <div class="row">
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required onchange="calculateAge()" />
+        </div>
+        <div>
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" readonly required min="8" max="25" />
+        </div>
+      </div>
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="contact">Contact Number</label>
+      <input type="tel" id="contact" name="contact" required pattern="[0-9]{10}" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="role">Playing Role</label>
+      <select id="role" name="role" required>
+        <option value="">Select</option>
+        <option value="Right-Hand Batsman">Right-Hand Batsman</option>
+        <option value="Left-Hand Batsman">Left-Hand Batsman</option>
+        <option value="Right-Arm Bowler (Fast)">Right-Arm Bowler (Fast)</option>
+        <option value="Right-Arm Bowler (Spin)">Right-Arm Bowler (Spin)</option>
+        <option value="Left-Arm Bowler (Fast)">Left-Arm Bowler (Fast)</option>
+        <option value="Left-Arm Bowler (Spin)">Left-Arm Bowler (Spin)</option>
+        <option value="Batting Allrounder">Batting Allrounder</option>
+        <option value="Bowling Allrounder">Bowling Allrounder</option>
+        <option value="Batsman Wicket-Keeper">Batsman Wicket-Keeper</option>
+        <option value="Keeper Batsman">Keeper Batsman</option>
+      </select>
+
+      <div class="row">
+        <div>
+          <label for="batting-style">Batting Style</label>
+          <select id="batting-style" name="batting-style">
+            <option value="">Select</option>
+            <option value="Right-Hand">Right-Hand</option>
+            <option value="Left-Hand">Left-Hand</option>
+          </select>
+        </div>
+        <div>
+          <label for="bowling-style">Bowling Style</label>
+          <select id="bowling-style" name="bowling-style">
+            <option value="">Select</option>
+            <option value="Right-Arm Fast">Right-Arm Fast</option>
+            <option value="Right-Arm Spin">Right-Arm Spin</option>
+            <option value="Left-Arm Fast">Left-Arm Fast</option>
+            <option value="Left-Arm Spin">Left-Arm Spin</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="experience">Previous Cricket Experience</label>
+      <textarea id="experience" name="experience" rows="3"></textarea>
+
+      <label for="medical">Medical Conditions (if any)</label>
+      <textarea id="medical" name="medical" rows="2"></textarea>
+
+      <label for="emergency">Emergency Contact Number</label>
+      <input type="tel" id="emergency" name="emergency" pattern="[0-9]{10}" />
+
+      <label for="aadhar-number">Aadhar Card Number</label>
+      <input type="text" id="aadhar-number" name="aadhar-number" required maxlength="12" pattern="[0-9]{12}" />
+
+      <label for="aadhar-front">Aadhar Card Front Side (Max 5MB)</label>
+      <input type="file" id="aadhar-front" name="aadhar-front" accept="image/*" required onchange="validateFileSize('aadhar-front', 'aadhar-front-error')" />
+      <span id="aadhar-front-error" class="error"></span>
+
+      <label for="aadhar-back">Aadhar Card Back Side (Max 5MB)</label>
+      <input type="file" id="aadhar-back" name="aadhar-back" accept="image/*" required onchange="validateFileSize('aadhar-back', 'aadhar-back-error')" />
+      <span id="aadhar-back-error" class="error"></span>
+
+      <label for="photo">Upload Photograph</label>
+      <input type="file" id="photo" name="photo" accept="image/*" />
+
+      <button type="submit">Submit Registration</button>
+    </form>
+  </section>
+  <footer>
+    &copy; 2025 National Talent Cricket Club
+  </footer>
+</body>
+</html>
